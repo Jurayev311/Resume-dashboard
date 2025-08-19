@@ -69,6 +69,7 @@ const Login = () => {
             htmlType="submit"
             style={{
               width: '100%',
+              height: "40px",
               borderRadius: '12px',
               backgroundColor: '#111',
               color: '#fff',
