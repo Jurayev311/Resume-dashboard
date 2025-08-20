@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import { request } from '../../api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const onFinishFailed = errorInfo => {
@@ -12,6 +12,7 @@ const Login = () => {
 
   const [user, setUser] = useState()
   const [pass, setPass] = useState()
+  const navigate = useNavigate()
 
   const handleSubmit = () => {
     request
@@ -19,8 +20,16 @@ const Login = () => {
         username: user,
         password: pass
       })
-      .then(res => console.log(res))
-      .catch(err => toast.error(err?.response?.data?.message))
+      .then(res => {
+        console.log(res)
+        toast.success("Tizimga kirdingiz!")
+        localStorage.setItem("token", res?.data?.accessToken)
+        localStorage.setItem("refreshtoken", res?.data?.refreshToken)
+        navigate("/dashboard")
+      })
+      .catch(err => {
+        toast.error(err?.response?.data?.message)
+      })
   }
 
   return (
