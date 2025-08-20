@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import { request } from '../../api';
+import { Link } from 'react-router-dom';
 
 const onFinishFailed = errorInfo => {
   console.log('Failed:', errorInfo);
@@ -37,7 +38,7 @@ const Login = () => {
           boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
         }}
       >
-        <h2 style={{ color: '#111', textAlign: 'center', marginBottom: '30px', fontWeight: 700 }}>
+        <h2 style={{ color: '#111', textAlign: 'center', marginBottom: '30px', fontWeight: 700, fontSize: '24px' }}>
           Login
         </h2>
 
@@ -48,6 +49,7 @@ const Login = () => {
           <Input
             onChange={(e) => setUser(e.target.value)}
             placeholder="Username"
+            autoComplete='username'
             style={{
               borderRadius: '12px',
               border: '1px solid #ccc',
@@ -66,6 +68,7 @@ const Login = () => {
           <Input.Password
             onChange={(e) => setPass(e.target.value)}
             placeholder="Password"
+            autoComplete='password'
             style={{
               borderRadius: '12px',
               border: '1px solid #ccc',
@@ -99,6 +102,12 @@ const Login = () => {
             Submit
           </Button>
         </Form.Item>
+        <p style={{ textAlign: 'center', marginTop: '15px' }}>
+          Don’t have an account?{' '}
+          <Link to="/register" style={{ color: '#111', fontWeight: 'bold' }}>
+            Register
+          </Link>
+        </p>
       </Form>
     </div>
   );
