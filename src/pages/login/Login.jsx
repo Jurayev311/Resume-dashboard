@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import { request } from '../../api';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const onFinishFailed = errorInfo => {
   console.log('Failed:', errorInfo);
@@ -19,7 +20,7 @@ const Login = () => {
         password: pass
       })
       .then(res => console.log(res))
-      .catch(err => console.log(err))
+      .catch(err => toast.error(err?.response?.data?.message))
   }
 
   return (

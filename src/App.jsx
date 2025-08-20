@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import Settings from './pages/dashboard/Settings'
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
 
@@ -18,6 +19,8 @@ function App() {
           <Route path='settings' element={<Settings />} />
         </Route>
       </Routes>
+
+      <Toaster position='top-right' />
     </>
   )
 }
