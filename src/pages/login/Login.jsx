@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
+import { request } from '../../api';
 
-const onFinish = values => {
-  console.log('Success:', values);
-};
 const onFinishFailed = errorInfo => {
   console.log('Failed:', errorInfo);
 };
 
 const Login = () => {
+
+  const [user, setUser] = useState()
+  const [pass, setPass] = useState()
+
+  const handleSubmit = () => {
+    request
+      .post('/auth/login', {
+        username: user,
+        password: pass
+      })
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  }
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-slate-100 p-4">
       <Form
         className='bg-[#ffffff]'
         name="login"
-        onFinish={onFinish}
+        onFinish={handleSubmit}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
         style={{
@@ -34,6 +46,7 @@ const Login = () => {
           rules={[{ required: true, message: 'Username required!' }]}
         >
           <Input
+            onChange={(e) => setUser(e.target.value)}
             placeholder="Username"
             style={{
               borderRadius: '12px',
@@ -51,6 +64,7 @@ const Login = () => {
           rules={[{ required: true, message: 'Password required!' }]}
         >
           <Input.Password
+            onChange={(e) => setPass(e.target.value)}
             placeholder="Password"
             style={{
               borderRadius: '12px',
