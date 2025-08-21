@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
+import { request } from '../../api';
+
 
 const Register = () => {
+
+    const [name, setName] = useState()
+    const [work, setwork] = useState()
+    const [me, setMe] = useState()
+    const [user, setUser] = useState()
+    const [pass, setPass] = useState()
+
+    const handleRegister = () => {
+        request
+            .post("", {
+                fullName: name ,
+                job: work,
+                about: me,
+                username: user,
+                password: pass
+            })
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
+    }
+
+
     return (
         <div className="flex justify-center items-center min-h-screen bg-slate-100 p-4">
             <Form
                 name="register"
                 autoComplete="off"
+                onFinish={handleRegister}
                 style={{
                     width: '100%',
                     maxWidth: 500,
@@ -36,6 +60,7 @@ const Register = () => {
                         rules={[{ required: true, message: 'Full Name required!' }]}
                     >
                         <Input
+                            onChange={(e) => setName(e.target.value)}
                             placeholder="Full Name"
                             style={{
                                 borderRadius: '12px',
@@ -51,6 +76,7 @@ const Register = () => {
                         rules={[{ required: true, message: 'Job required!' }]}
                     >
                         <Input
+                            onChange={(e) => setwork(e.target.value)}
                             placeholder="Job"
                             style={{
                                 borderRadius: '12px',
@@ -66,6 +92,7 @@ const Register = () => {
                     rules={[{ required: true, message: 'About required!' }]}
                 >
                     <Input.TextArea
+                        onChange={(e) => setMe(e.target.value)}
                         placeholder="About"
                         autoSize={{ minRows: 3, maxRows: 5 }}
                         style={{
@@ -84,6 +111,7 @@ const Register = () => {
                         rules={[{ required: true, message: 'Username required!' }]}
                     >
                         <Input
+                            onChange={(e) => setUser(e.target.value)}
                             placeholder="Username"
                             style={{
                                 borderRadius: '12px',
@@ -99,6 +127,7 @@ const Register = () => {
                         rules={[{ required: true, message: 'Password required!' }]}
                     >
                         <Input.Password
+                            onChange={(e) => setPass(e.target.value)}
                             placeholder="Password"
                             style={{
                                 borderRadius: '12px',

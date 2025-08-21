@@ -3,6 +3,7 @@ import { Button, Form, Input } from 'antd';
 import { request } from '../../api';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { useForm } from 'antd/es/form/Form';
 
 const onFinishFailed = errorInfo => {
   console.log('Failed:', errorInfo);
@@ -10,6 +11,7 @@ const onFinishFailed = errorInfo => {
 
 const Login = () => {
 
+  const [form] = useForm()
   const [user, setUser] = useState()
   const [pass, setPass] = useState()
   const navigate = useNavigate()
@@ -26,15 +28,20 @@ const Login = () => {
         localStorage.setItem("token", res?.data?.accessToken)
         localStorage.setItem("refreshtoken", res?.data?.refreshToken)
         navigate("/dashboard")
+        
+        form.resetFields()
       })
       .catch(err => {
         toast.error(err?.response?.data?.message)
+        
+        form.resetFields()
       })
   }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-slate-100 p-4">
       <Form
+        form={form}
         className='bg-[#ffffff]'
         name="login"
         onFinish={handleSubmit}

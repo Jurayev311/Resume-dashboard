@@ -3,6 +3,8 @@ import './App.css'
 import Dashboard from './pages/dashboard/Dashboard'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import Settings from './pages/dashboard/Settings'
+import Profile from './pages/dashboard/Profile'
+import Resume from './pages/dashboard/Resume'
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import { Toaster } from 'react-hot-toast'
@@ -14,7 +16,7 @@ function App() {
 
   useEffect(() => {
     if(token) {
-      navigate('/dashboard')
+      navigate('/dashboard/profile')
     } else {
       navigate("/login")
     }
@@ -27,6 +29,8 @@ function App() {
         <Route path='/register' element={<Register />} />
         
         <Route path='/dashboard' element={<Dashboard />}>
+          <Route path='profile' element={<Profile />} />
+          <Route path='resume' element={<Resume />} />
           <Route path='settings' element={<Settings />} />
         </Route>
       </Routes>
