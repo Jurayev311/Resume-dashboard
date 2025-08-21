@@ -28,7 +28,7 @@ const Login = () => {
     )
       .then(res => {
         console.log(res)
-        toast.success("Tizimga kirdingiz!")
+        toast.success("You have logged in!")
         localStorage.setItem("token", res?.data?.accessToken)
         localStorage.setItem("refreshtoken", res?.data?.refreshToken)
         navigate("/dashboard/profile")
