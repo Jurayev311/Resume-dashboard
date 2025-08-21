@@ -21,13 +21,17 @@ const Login = () => {
       .post('/auth/login', {
         username: user,
         password: pass
-      })
+      },
+      {
+        headers: { hl: localStorage.getItem("lang") || "en" }
+      }
+    )
       .then(res => {
         console.log(res)
         toast.success("Tizimga kirdingiz!")
         localStorage.setItem("token", res?.data?.accessToken)
         localStorage.setItem("refreshtoken", res?.data?.refreshToken)
-        navigate("/dashboard")
+        navigate("/dashboard/profile")
         
         form.resetFields()
       })
