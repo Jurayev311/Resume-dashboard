@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   return (
     <div className='flex'>
-      <div className='w-[250px] min-h-screen bg-slate-100 flex flex-col justify-between'>
+      <div className='w-[250px] min-h-screen bg-slate-100 flex flex-col justify-between rounded-2xl'>
         
         <div>
           <div className='text-2xl font-bold text-center p-4 cursor-default'>
@@ -56,7 +56,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className='p-5 flex-1'>
+      <div className='m-5 p-5 flex-1 bg-slate-100 rounded-xl'>
         <Outlet />
       </div>
     </div>
