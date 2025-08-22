@@ -15,7 +15,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className='flex'>
+    <div className='flex h-screen'>
       <div className='w-[250px] min-h-screen bg-slate-100 flex flex-col justify-between rounded-2xl'>
         
         <div>
@@ -50,13 +50,13 @@ const Dashboard = () => {
         <div className='p-3'>
           <button 
             onClick={handleLogOut}
-            className="w-full bg-red-400 text-white hover:bg-red-500 p-3 rounded-[10px] font-medium duration-300">
+            className="w-full bg-red-400 text-white hover:bg-red-500 p-3 rounded-[10px] font-medium duration-300 cursor-pointer">
             Log Out
           </button>
         </div>
       </div>
 
-      <div className='m-5 p-5 flex-1 bg-slate-100 rounded-xl'>
+      <div className='m-5 p-5 flex-1 bg-slate-100 overflow-y-auto rounded-xl'>
         <Outlet />
       </div>
     </div>
