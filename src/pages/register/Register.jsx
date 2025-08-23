@@ -28,7 +28,7 @@ const Register = () => {
             })
             .then((res) => {
                 toast.success("User registered successfully.")
-                navigate("/login")
+                navigate("/")
             })
             .catch((err) => {
                 toast.error(err?.response?.data?.message)
@@ -186,7 +186,7 @@ const Register = () => {
                 </Form.Item>
                 <p style={{ textAlign: 'center', marginTop: '15px' }}>
                     Already have an account?{' '}
-                    <Link to="/login" style={{ color: '#111', fontWeight: 'bold' }}>
+                    <Link to="/" style={{ color: '#111', fontWeight: 'bold' }}>
                         Login
                     </Link>
                 </p>

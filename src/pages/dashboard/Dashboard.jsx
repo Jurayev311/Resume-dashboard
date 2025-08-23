@@ -15,7 +15,7 @@ const Dashboard = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("refreshtoken")
 
-    navigate('/login')
+    navigate('/')
   }
 
   return (

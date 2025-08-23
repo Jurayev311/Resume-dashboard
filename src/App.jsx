@@ -5,7 +5,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import Settings from './pages/dashboard/Settings'
 import Profile from './pages/dashboard/Profile'
 import Resume from './pages/dashboard/Resume'
-import Login from './pages/login/Login'
+import Login from './pages//'
 import Register from './pages/register/Register'
 import { Toaster } from 'react-hot-toast'
 import NotFound from './components/notFound/NotFound'
@@ -19,14 +19,14 @@ function App() {
     if(token) {
       navigate('/dashboard/profile')
     } else {
-      navigate("/login")
+      navigate("/")
     }
   }, [])
 
   return (
     <>
       <Routes>
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='*' element={<NotFound />} />
         
