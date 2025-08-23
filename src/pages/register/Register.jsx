@@ -27,12 +27,10 @@ const Register = () => {
                 password: pass
             })
             .then((res) => {
-                console.log(res);
                 toast.success("User registered successfully.")
                 navigate("/login")
             })
             .catch((err) => {
-                console.log(err)
                 toast.error(err?.response?.data?.message)
             })
     }
