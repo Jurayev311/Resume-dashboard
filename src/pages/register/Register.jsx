@@ -11,7 +11,7 @@ const Register = () => {
     const navigate = useNavigate()
 
     const [name, setName] = useState()
-    const [work, setwork] = useState()
+    const [work, setWork] = useState()
     const [me, setMe] = useState()
     const [user, setUser] = useState()
     const [pass, setPass] = useState()
@@ -89,7 +89,7 @@ const Register = () => {
                         rules={[{ required: true, message: 'Job required!' }]}
                     >
                         <Input
-                            onChange={(e) => { setwork(e.target.value); setNote(true) }}
+                            onChange={(e) => { setWork(e.target.value); setNote(true) }}
                             autoComplete="job"
                             placeholder="Job"
                             style={{
