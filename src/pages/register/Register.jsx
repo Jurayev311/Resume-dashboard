@@ -3,6 +3,7 @@ import { Button, Form, Input } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { request } from '../../api';
 import toast from 'react-hot-toast';
+import { TbLockPassword } from "react-icons/tb";
 
 
 const Register = () => {
@@ -14,11 +15,12 @@ const Register = () => {
     const [me, setMe] = useState()
     const [user, setUser] = useState()
     const [pass, setPass] = useState()
+    const [note, setNote] = useState(false)
 
     const handleRegister = () => {
         request
             .post("/user", {
-                fullName: name ,
+                fullName: name,
                 job: work,
                 about: me,
                 username: user,
@@ -70,7 +72,7 @@ const Register = () => {
                         rules={[{ required: true, message: 'Full Name required!' }]}
                     >
                         <Input
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => { setName(e.target.value); setNote(true) }}
                             autoComplete="fullName"
                             placeholder="Full Name"
                             style={{
@@ -87,7 +89,7 @@ const Register = () => {
                         rules={[{ required: true, message: 'Job required!' }]}
                     >
                         <Input
-                            onChange={(e) => setwork(e.target.value)}
+                            onChange={(e) => { setwork(e.target.value); setNote(true) }}
                             autoComplete="job"
                             placeholder="Job"
                             style={{
@@ -104,7 +106,7 @@ const Register = () => {
                     rules={[{ required: true, message: 'About required!' }]}
                 >
                     <Input.TextArea
-                        onChange={(e) => setMe(e.target.value)}
+                        onChange={(e) => { setMe(e.target.value); setNote(true) }}
                         autoComplete="about"
                         placeholder="About"
                         autoSize={{ minRows: 3, maxRows: 5 }}
@@ -123,7 +125,8 @@ const Register = () => {
                         rules={[{ required: true, message: 'Username required!' }]}
                     >
                         <Input
-                            onChange={(e) => setUser(e.target.value)}
+                            onChange={(e) => { setUser(e.target.value); setNote(true) }}
+                            autoComplete='username'
                             placeholder="Username"
                             style={{
                                 borderRadius: '12px',
@@ -139,7 +142,8 @@ const Register = () => {
                         rules={[{ required: true, message: 'Password required!' }]}
                     >
                         <Input.Password
-                            onChange={(e) => setPass(e.target.value)}
+                            onChange={(e) => { setPass(e.target.value); setNote(true) }}
+                            autoComplete='password'
                             placeholder="Password"
                             style={{
                                 borderRadius: '12px',
@@ -149,6 +153,12 @@ const Register = () => {
                         />
                     </Form.Item>
                 </div>
+
+                {note && (
+                    <p className='text-center text-green-500 text-[13px] py-1.5'>
+                        <TbLockPassword className='inline-block text-xl text-slate-900' /> Please remember your username and password for future login.
+                    </p>
+                )}
 
                 <Form.Item>
                     <Button
