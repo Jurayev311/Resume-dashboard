@@ -8,5 +8,3 @@ const request = axios.create({
 })
 
 export {request}
-
-

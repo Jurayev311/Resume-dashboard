@@ -22,7 +22,7 @@ const Dashboard = () => {
     <>
       <button onClick={() => setOpen(!open)} className='md:hidden sticky top-1.5 left-0 w-[30px] h-[30px] text-xl bg-[#cad5e27c] rounded-tr-xl rounded-br-xl flex items-center justify-center'><LuMenu /></button>
 
-      <div className='flex md:h-screen'>
+      <div className='flex md:h-screen overflow-hidden'>
 
       {open && (
          <div
