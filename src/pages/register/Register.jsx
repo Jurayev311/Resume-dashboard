@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { request } from '../../api';
+import toast from 'react-hot-toast';
 
 
 const Register = () => {
+
+    const navigate = useNavigate()
 
     const [name, setName] = useState()
     const [work, setwork] = useState()
@@ -14,15 +17,22 @@ const Register = () => {
 
     const handleRegister = () => {
         request
-            .post("", {
+            .post("/user", {
                 fullName: name ,
                 job: work,
                 about: me,
                 username: user,
                 password: pass
             })
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err))
+            .then((res) => {
+                console.log(res);
+                toast.success("User registered successfully.")
+                navigate("/login")
+            })
+            .catch((err) => {
+                console.log(err)
+                toast.error(err?.response?.data?.message)
+            })
     }
 
 
@@ -61,6 +71,7 @@ const Register = () => {
                     >
                         <Input
                             onChange={(e) => setName(e.target.value)}
+                            autoComplete="fullName"
                             placeholder="Full Name"
                             style={{
                                 borderRadius: '12px',
@@ -77,6 +88,7 @@ const Register = () => {
                     >
                         <Input
                             onChange={(e) => setwork(e.target.value)}
+                            autoComplete="job"
                             placeholder="Job"
                             style={{
                                 borderRadius: '12px',
@@ -93,6 +105,7 @@ const Register = () => {
                 >
                     <Input.TextArea
                         onChange={(e) => setMe(e.target.value)}
+                        autoComplete="about"
                         placeholder="About"
                         autoSize={{ minRows: 3, maxRows: 5 }}
                         style={{
@@ -103,7 +116,6 @@ const Register = () => {
                     />
                 </Form.Item>
 
-                {/* Username va Password yonma-yon */}
                 <div className="flex gap-4">
                     <Form.Item
                         name="username"
