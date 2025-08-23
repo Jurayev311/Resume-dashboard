@@ -8,6 +8,7 @@ import Resume from './pages/dashboard/Resume'
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import { Toaster } from 'react-hot-toast'
+import NotFound from './components/notFound/NotFound'
 
 function App() {
 
@@ -27,11 +28,13 @@ function App() {
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='*' element={<NotFound />} />
         
         <Route path='/dashboard' element={<Dashboard />}>
           <Route path='profile' element={<Profile />} />
           <Route path='resume' element={<Resume />} />
           <Route path='settings' element={<Settings />} />
+        <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>
 
