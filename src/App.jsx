@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const currentPath = window.location.pathname;
     if (token) {
-      if (currentPath === '/' || currentPath === '/dashboard') {
+      if (currentPath === '/' || currentPath === '/dashboard/profile') {
         navigate("/dashboard/profile");
       }
     } else {
