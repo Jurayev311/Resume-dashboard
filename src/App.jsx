@@ -16,10 +16,15 @@ function App() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(token) {
-      navigate('/dashboard/profile')
+    const currentPath = window.location.pathname;
+    if (token) {
+      if (currentPath === '/' || currentPath === '/dashboard') {
+        navigate("/dashboard/profile");
+      }
     } else {
-      navigate("/")
+      if (currentPath !== '/') {
+        navigate('/');
+      }
     }
   }, [])
 
