@@ -65,7 +65,9 @@ const Login = () => {
 
         <Form.Item
           name="username"
-          rules={[{ required: true, message: 'Username required!' }]}
+          rules={[{ required: true, message: 'Username required!' },
+            { min: 8, message: 'Username must be at least 8 characters' }
+          ]}
         >
           <Input
             onChange={(e) => setUser(e.target.value)}
@@ -84,7 +86,9 @@ const Login = () => {
 
         <Form.Item
           name="password"
-          rules={[{ required: true, message: 'Password required!' }]}
+          rules={[{ required: true, message: 'Password required!' },
+            { min: 8, message: 'Password must be at least 8 characters' }
+          ]}
         >
           <Input.Password
             onChange={(e) => setPass(e.target.value)}
