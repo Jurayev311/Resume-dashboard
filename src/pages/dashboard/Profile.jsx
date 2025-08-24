@@ -7,6 +7,7 @@ import { FiUpload } from "react-icons/fi";
 const Profile = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState()
 
   useEffect(() => {
     setLoading(true);
@@ -19,7 +20,7 @@ const Profile = () => {
         },
       })
       .then((res) => setData(res.data))
-      .catch((err) => console.log(err))
+      .catch((err) => setError(err))
       .finally(() => setLoading(false));
   }, []);
 
@@ -30,6 +31,27 @@ const Profile = () => {
       </div>
     );
   }
+
+  if (error) {
+  return (
+    <div className="flex items-center justify-center h-screen bg-red-100 p-1.5">
+      <div className="text-center p-6 bg-white rounded-lg shadow-md border border-red-300">
+        <h1 className="text-2xl font-bold text-red-600 mb-2">Something went wrong!</h1>
+        <p className="text-red-500">Failed to fetch data from the server. Please try refreshing the page.</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-4 px-4 py-2 bg-red-500 text-white rounded-[8px] hover:bg-red-600 transition cursor-pointer"
+        >
+          Reload Page
+        </button>
+      </div>
+    </div>
+  );
+}
+
+
+console.log(error);
+
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6">

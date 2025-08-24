@@ -18,7 +18,7 @@ const Login = () => {
 
   const handleSubmit = () => {
     request
-      .post('/auth/', {
+      .post('/auth/login', {
         username: user,
         password: pass
       },
