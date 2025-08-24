@@ -67,7 +67,9 @@ const Register = () => {
                     <Form.Item
                         name="fullName"
                         className="flex-1"
-                        rules={[{ required: true, message: 'Full Name required!' }]}
+                        rules={[{ required: true, message: 'Full Name required!' },
+                            { min: 3, message: 'Full Name must be at least 3 characters' }
+                        ]}
                     >
                         <Input
                             onChange={(e) => { setName(e.target.value); setNote(true) }}
@@ -84,7 +86,9 @@ const Register = () => {
                     <Form.Item
                         name="job"
                         className="flex-1"
-                        rules={[{ required: true, message: 'Job required!' }]}
+                        rules={[{ required: true, message: 'Job required!' },
+                            { min: 3, message: 'Job must be at least 3 characters' }
+                        ]}
                     >
                         <Input
                             onChange={(e) => { setWork(e.target.value); setNote(true) }}
@@ -101,7 +105,9 @@ const Register = () => {
 
                 <Form.Item
                     name="about"
-                    rules={[{ required: true, message: 'About required!' }]}
+                    rules={[{ required: true, message: 'About required!' },
+                        { min: 10, message: 'About must be at least 10 characters' }
+                    ]}
                 >
                     <Input.TextArea
                         onChange={(e) => { setMe(e.target.value); setNote(true) }}
