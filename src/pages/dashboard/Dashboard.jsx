@@ -8,6 +8,7 @@ import { IoCloseCircle } from "react-icons/io5";
 const Dashboard = () => {
 
   const [open, setOpen] = useState(false)
+  const [modal, setModal] = useState(false)
 
   const navigate = useNavigate()
 
@@ -74,7 +75,7 @@ const Dashboard = () => {
 
           <div className='p-3'>
             <button
-              onClick={handleLogOut}
+              onClick={() => setModal(true)}
               className="w-full bg-red-400 text-white hover:bg-red-500 p-3 rounded-[10px] font-medium duration-300 cursor-pointer">
               Log Out
             </button>
@@ -84,6 +85,26 @@ const Dashboard = () => {
         <div className='m-5 p-5 flex-1 bg-slate-100 md:overflow-y-auto rounded-xl'>
           <Outlet />
         </div>
+
+        {modal && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 p-2">
+            <div className="bg-white p-6 rounded-lg w-80 text-center">
+              <h2 className="text-lg font-bold mb-4">Are you sure you want to log out?</h2>
+              <div className="flex justify-around">
+                <button
+                  onClick={handleLogOut}
+                  className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 duration-300">
+                  Yes, log out
+                </button>
+                <button
+                  onClick={() => setModal(false)}
+                  className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 duration-300">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   )
